@@ -1,0 +1,168 @@
+WARNING: hash calculation: '/home/debian/.vscode-server/data/User/workspaceStorage/121504bfd3f675d88eaf7d22f3902e81/vscode.lock' has been changed (changed attributes: c+m, hash could not be calculated)
+WARNING: hash calculation: '/home/debian/.vscode-server/data/logs/20260626T104218/remoteagent.log' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/home/debian/.vscode-server/data/logs/20260626T104218/exthost1/remoteexthost.log' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/backups/apt.extended_states.0' has been changed (changed attributes: i, hash could not be calculated)
+WARNING: hash calculation: '/var/backups/apt.extended_states.1.gz' has been changed (changed attributes: s+c+m+i, hash could not be calculated)
+WARNING: hash calculation: '/var/cache/apt/pkgcache.bin' has been changed (changed attributes: c+m+i, hash could not be calculated)
+WARNING: hash calculation: '/var/cache/ldconfig/aux-cache' has been changed (changed attributes: s+c+m+i, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile.7' has been changed (changed attributes: s+c, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry.1' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile.5' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile.3' has been changed (changed attributes: s+c+b, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile.0' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry.6' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile.1' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile.2' has been changed (changed attributes: s+c, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry.3' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry.2' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile.4' has been changed (changed attributes: s+c+m+b, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry.4' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile' has been changed (changed attributes: s+c+m+i, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry.0' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry.7' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry.5' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/hashfile.6' has been changed (changed attributes: s+c+m, hash could not be calculated)
+WARNING: hash calculation: '/var/lib/ucf/registry' has been changed (changed attributes: s+c+m+i, hash could not be calculated)
+WARNING: hash calculation: '/var/log/audit/audit.log' has been changed (changed attributes: s+c+m+b, hash could not be calculated)
+Entry /home/debian/.vscode-server/data/logs/20260626T104218/exthost1/remoteexthost.log in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /home/debian/.vscode-server/data/logs/20260626T104218/remoteagent.log in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/backups/apt.extended_states.0 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/backups/apt.extended_states.1.gz in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/cache/apt/pkgcache.bin in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/cache/ldconfig/aux-cache in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile.0 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile.1 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile.2 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile.3 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile.4 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile.5 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile.6 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/hashfile.7 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry.0 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry.1 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry.2 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry.3 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry.4 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry.5 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry.6 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/lib/ucf/registry.7 in databases has different attributes: -md5-sha1-rmd160-tiger-crc32-haval-gost-crc32b-sha256-sha512-whirlpool
+Entry /var/log/aide/aideinit.errors in databases has different attributes: +md5+sha1+rmd160+tiger+crc32+haval+gost+crc32b+sha256+sha512+whirlpool
+Start timestamp: 2026-06-26 12:26:05 +0000 (AIDE 0.18.3)
+AIDE found differences between database and filesystem!!
+Ignored e2fs attributes: EINV
+
+Summary:
+  Total number of entries:      64214
+  Added entries:                2
+  Removed entries:              0
+  Changed entries:              8
+
+---------------------------------------------------
+Added entries:
+---------------------------------------------------
+
+s+++++++++++++++++: /run/user/1000/vscode-ipc-3379863b-2e8b-417c-9a9f-21af5226e489.sock
+f+++++++++++++++++: /var/spool/apt-listbugs/lastprefclean
+
+---------------------------------------------------
+Changed entries:
+---------------------------------------------------
+
+f =.... mc.. .. . : /home/debian/.vscode-server/data/User/workspaceStorage/121504bfd3f675d88eaf7d22f3902e81/vscode.lock
+f =.... mc..... . : /tmp/dangerous_file
+f =.... mc..... . : /tmp/passwd_backup
+f =.... mc..... . : /tmp/suspicious.sh
+f >b... mc..+.. . : /var/log/aide/aideinit.errors
+f >b... mc..H.. . : /var/log/aide/aideinit.log
+f >b... mc.. .. . : /var/log/audit/audit.log
+d =.... mc.. .. . : /var/spool/apt-listbugs
+
+---------------------------------------------------
+Detailed information about changes:
+---------------------------------------------------
+
+File: /home/debian/.vscode-server/data/User/workspaceStorage/121504bfd3f675d88eaf7d22f3902e81/vscode.lock
+ Mtime     : 2026-06-26 12:13:31 +0000        | 2026-06-26 12:28:05 +0000
+ Ctime     : 2026-06-26 12:13:31 +0000        | 2026-06-26 12:28:05 +0000
+
+File: /tmp/dangerous_file
+ Mtime     : 2026-06-26 12:10:01 +0000        | 2026-06-26 12:20:01 +0000
+ Ctime     : 2026-06-26 12:10:01 +0000        | 2026-06-26 12:20:01 +0000
+
+File: /tmp/passwd_backup
+ Mtime     : 2026-06-26 12:10:01 +0000        | 2026-06-26 12:20:01 +0000
+ Ctime     : 2026-06-26 12:10:01 +0000        | 2026-06-26 12:20:01 +0000
+
+File: /tmp/suspicious.sh
+ Mtime     : 2026-06-26 12:10:01 +0000        | 2026-06-26 12:20:01 +0000
+ Ctime     : 2026-06-26 12:10:01 +0000        | 2026-06-26 12:20:01 +0000
+
+File: /var/log/aide/aideinit.errors
+ Size      : 0                                | 469
+ Bcount    : 0                                | 8
+ Mtime     : 2026-06-26 12:13:30 +0000        | 2026-06-26 12:17:52 +0000
+ Ctime     : 2026-06-26 12:13:30 +0000        | 2026-06-26 12:17:52 +0000
+
+File: /var/log/aide/aideinit.log
+ Size      : 0                                | 1165
+ Bcount    : 0                                | 8
+ Mtime     : 2026-06-26 12:13:30 +0000        | 2026-06-26 12:18:00 +0000
+ Ctime     : 2026-06-26 12:13:30 +0000        | 2026-06-26 12:18:00 +0000
+ MD5       : 1B2M2Y8AsgTpgAmY7PhCfg==         | MOeZHWFuxf+NY7B8l/XAtg==
+ SHA1      : 2jmj7l5rSw0yVb/vlWAYkK/YBwk=     | VaV+yB3OS5ag3SZz7N6HFe1Od+s=
+ SHA256    : 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NM | 1wgEGWBzpL3zVcfbFh+dfQNzqsha0oe/
+             pJWZG3hSuFU=                     | 0sj8c5pZ8n0=
+ SHA512    : z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXc | X8cRSkPSammnWvfm3O66rKg6vSmyJyzg
+             g/SpIdNs6c5H0NE8XYXysP+DGNKHfuwv | sRj3+5SQs743ekqWuP9hxkAfSuSmQ/kN
+             Y7kxvUdBeoGlODJ6+SfaPg==         | X/AqXnP92soFFeNkLUxmKA==
+ RMD160    : nBGFpcXp/FRhKAiXfuj1SLIljTE=     | P5d9RELjsn1LBCmN6aZ544oyrIw=
+ TIGER     : JPATDGOskzIWFm52sbuSX/Nz3i1JWE56 | tQh5PE7Krr6Q5TPTlP+za6IRySd4HYI0
+ CRC32     : AAAAAA==                         | JX5Dmg==
+ CRC32B    : AAAAAA==                         | 8MzOFw==
+ HAVAL     : T2k4Ux8LyJkfYtp7vW994/rURWK4xvTr | 5LDD+PPpzfuRurRON+o0y3/vnIMs0Kn6
+             8UbVtORvfBc=                     | SI6n1Y0cfTU=
+ WHIRLPOOL : Gfph11UipGabROOcHS4XJsUwIyEw1Af4 | jtskmjiHxSAN0d5oddoRlONvimoKceaf
+             mv7glkmX96c+g75piyiP68+I4+A8TwdX | PM+0C0zi4ybLz1Lc29hLQFLFOtcnTxEY
+             6olk5Ztj2TcIsTjMQqZusw==         | 8cpOyHjknHMWsiPsqhRyfA==
+ GOST      : zoW5nMRnUv/+41yrmnsCeKu0wtIFXP9o | nwDaFkVzvN66aiErhh/BMiroU1CVc9MM
+             WvSRLElJD40=                     | jm9Bzs2ZwcQ=
+
+File: /var/log/audit/audit.log
+ Size      : 164867                           | 184254
+ Bcount    : 336                              | 368
+ Mtime     : 2026-06-26 12:13:26 +0000        | 2026-06-26 12:28:07 +0000
+ Ctime     : 2026-06-26 12:13:26 +0000        | 2026-06-26 12:28:07 +0000
+
+Directory: /var/spool/apt-listbugs
+ Mtime     : 2023-01-11 22:13:50 +0000        | 2026-06-26 12:23:48 +0000
+ Ctime     : 2026-06-26 12:10:12 +0000        | 2026-06-26 12:23:48 +0000
+
+
+---------------------------------------------------
+The attributes of the (uncompressed) database(s):
+---------------------------------------------------
+
+/var/lib/aide/aide.db
+ MD5       : qiMiJWNMV3fIntcRj8iW1w==
+ SHA1      : FH7W2b7bJy5fM/mP+x64OVAc0pk=
+ SHA256    : +Xn4yTd8ZvaID/UMzvBveuKVqiI0QRoB
+             jAyIdZKwa/0=
+ SHA512    : 1SD6lQnUToT3f1HUWRRQ6fcgbgZMaHXS
+             mpX6n6vtzHdnj+omM2iHoiSlq7aeYpYR
+             GGT+d14IsVyCdEMU9BjOCw==
+ RMD160    : 06DblXxqPaSpgzys3BEsRh4ukCk=
+ TIGER     : v/viZ4kVrmwVrGuSmm+aVjz52ehggOKx
+ CRC32     : H9ubiQ==
+ CRC32B    : rE4GXA==
+ HAVAL     : Daeslq01jSMEHcfS7GysiG9VWumisfFt
+             uZaNeEh1Cvw=
+ WHIRLPOOL : Fe7XQgKlxWSq8uX34Q2soZNHQvYb7xto
+             Enp3TjG5Y7J/2oBz+xDbuAUxvVib0wjn
+             Qy74ZkGI5cxukIxbbS+DMA==
+ GOST      : kHcDLXPR74MyBzYK09xYNZbnO2wf7Kb1
+             LS6GrWlUt8A=
+
+
+End timestamp: 2026-06-26 12:32:33 +0000 (run time: 6m 28s)

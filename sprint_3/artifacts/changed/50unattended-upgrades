@@ -1,0 +1,12 @@
+Unattended-Upgrade::Allowed-Origins {
+    "${distro_id}:${distro_codename}-security";
+};
+Unattended-Upgrade::Package-Blacklist {
+    "mysql-server";
+    "postgresql";
+    "nginx";
+    "apache2";
+    "php";
+    "python3";
+    "docker";
+};

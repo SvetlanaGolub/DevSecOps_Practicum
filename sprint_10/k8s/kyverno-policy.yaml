@@ -1,0 +1,31 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-pet-security-context
+spec:
+  validationFailureAction: Enforce
+  background: true
+
+  rules:
+    - name: require-security-context
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+              namespaces:
+                - default
+
+      validate:
+        message: >-
+          Pods in default namespace must set runAsNonRoot=true,
+          readOnlyRootFilesystem=true and allowPrivilegeEscalation=false
+          for every container.
+
+        pattern:
+          spec:
+            containers:
+              - securityContext:
+                  runAsNonRoot: true
+                  readOnlyRootFilesystem: true
+                  allowPrivilegeEscalation: false

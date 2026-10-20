@@ -1,0 +1,9 @@
+# Extends the default configuration so you don't lose built-in rules
+useDefault = true
+
+[allowlist]
+description = "Global folder exclusions"
+paths = [
+    '''^reports/''',
+    '''^artifacts/'''
+]

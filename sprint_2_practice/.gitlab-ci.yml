@@ -1,0 +1,50 @@
+stages: [build, test, delivery, deploy]
+
+build:
+  stage: build
+  image: alpine:3.19
+  script:
+    - 'echo "== BUILD =="'
+    - 'echo "{}" > sbom.json'
+    - 'test -s sbom.json'
+    - "echo \"SCA results: CRIT=${SCA_CRIT}\""
+    - "if [ \"${SCA_CRIT}\" != \"0\" ]; then echo \"GATE: SCA Crit>0 -> BLOCK\"; exit 1; fi"
+  artifacts:
+    when: always
+    paths:
+      - sbom.json
+  allow_failure: false
+
+test:
+  stage: test
+  image: alpine:3.19
+  script:
+    - 'echo "== TEST =="'
+    - "echo \"DAST results: CRIT=${DAST_CRIT}\""
+    - "if [ \"${DAST_CRIT}\" != \"0\" ]; then echo \"GATE: DAST Crit>0 -> BLOCK\"; exit 1; fi"
+  allow_failure: false
+
+delivery:
+  stage: delivery
+  image: alpine:3.19
+  script:
+    - 'echo "== DELIVERY =="'
+    - 'echo "Sign artifact (placeholder)"'
+    - 'echo "Registry auth via CI_JOB_TOKEN (write_registry) (placeholder)"'
+    # Пример реальных команд:
+    # - docker login "$CI_REGISTRY" -u gitlab-ci-token -p "$CI_JOB_TOKEN"
+    # - docker push "$CI_REGISTRY_IMAGE:latest"
+  allow_failure: false
+
+deploy:
+  stage: deploy
+  image: alpine:3.19
+  environment:
+    name: production
+    url: https://example.com
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: manual
+  script:
+    - 'echo "== DEPLOY =="'
+    - 'echo "Deploy with service account deploy-operator (placeholder)"'

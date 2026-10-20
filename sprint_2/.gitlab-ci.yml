@@ -1,0 +1,99 @@
+
+variables:
+  SAST_EXCLUDED_PATHS: "frontend/src/assets/private/**"
+  DAST_TARGET: "https://ginandjuice.shop"
+
+stages:
+  - sast
+  - sca
+  - dast
+
+semgrep:
+  stage: sast
+  image:
+    name: semgrep/semgrep:1.139.0
+    entrypoint: [""]
+  tags:
+    - yandex
+    - docker
+  script:
+    - semgrep --config p/javascript --config p/nodejs --config p/security-audit --json -o security-reports/sast-report.json .
+    # fail-gate
+    - |
+      if jq '.results[] | select(.extra.severity == "ERROR")' security-reports/sast-report.json ; then
+        echo "Найдены уязвимости уровня ERROR"
+        # exit 1
+      fi
+    # Формирование лога гейта
+    - mkdir -p artifacts/ci
+    - jq -r '.results[] | select(.extra.severity == "ERROR") | "\(.path):\(.start.line) - \(.extra.message)"' security-reports/sast-report.json > artifacts/ci/gate-sast.log 2>/dev/null || echo "No ERROR severity findings" > artifacts/ci/gate-sast.log 
+  artifacts:
+    when: always
+    paths:
+      - security-reports/sast-report.json
+      - artifacts/ci/gate-sast.log
+
+trivy:
+  stage: sca
+  image: node:20-alpine
+  tags:
+    - yandex
+    - docker
+  before_script:
+    - apk add --no-cache jq curl git
+    # Генерируем package-lock.json из package.json
+    - npm install --package-lock-only --no-audit --no-fund --ignore-scripts
+    # Устанавливаем Trivy
+    - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+  script:
+    - mkdir -p security-reports artifacts/ci
+    - trivy fs --scanners vuln --severity CRITICAL,HIGH --format json -o security-reports/sca-report.json .
+    - trivy fs --format spdx-json -o security-reports/sbom.spdx .
+    # fail-gate
+    - |
+      if jq '.Results[].Vulnerabilities[] | select(.CVSS.nvd.V3Score >= 7.0)' security-reports/sca-report.json; then
+        echo "Найдены CVE с оценкой CVSS >= 7.0"
+        # exit 1
+      fi
+    # Формирование лога гейта
+    - mkdir -p artifacts/ci
+    - jq -r '.Results[].Vulnerabilities[] | select(.CVSS.nvd.V3Score >= 7.0) | "\(.VulnerabilityID) \(.PkgName) \(.InstalledVersion) CVSS:\(.CVSS.nvd.V3Score)"' security-reports/sca-report.json > artifacts/ci/gate-sca.log 2>/dev/null || echo "No CVEs with CVSS >= 7.0" > artifacts/ci/gate-sca.log
+  artifacts:
+    when: always
+    paths:
+      - security-reports/sca-report.json
+      - security-reports/sbom.spdx
+      - artifacts/ci/gate-sca.log
+
+zap:
+  stage: dast
+  image: 
+    name: ghcr.io/zaproxy/zaproxy
+    entrypoint: [""]
+  tags:
+    - yandex
+    - docker
+  script:
+    - mkdir -p /zap/wrk
+    - cd /zap/wrk
+    - python3 /zap/zap-baseline.py -t https://preview.owasp-juice.shop/ -r zap-report.html -x zap-report.xml -J zap-report.json || true
+    - mkdir -p $CI_PROJECT_DIR/security-reports $CI_PROJECT_DIR/artifacts/ci
+    - cp zap-report.html $CI_PROJECT_DIR/security-reports/dast-report.html
+    - cp zap-report.json $CI_PROJECT_DIR/security-reports/dast-report.json
+    - cat zap-report.json > $CI_PROJECT_DIR/artifacts/ci/zap-baseline-log.txt
+    # fail-gate
+    - |
+      if jq -e '.site[].alerts[] | select(.risk == "High" or .risk == "Critical")' zap-report.json 2>/dev/null; then
+        echo "Найдены уязвимости уровня High|Critical"
+        # exit 1
+      fi
+      # Формирование лога гейта
+      - jq -r '.site[].alerts[] | select(.risk == "High" or .risk == "Critical") | "\(.name) - \(.risk) - \(.url)"' /zap/wrk/zap-report.json > $CI_PROJECT_DIR/artifacts/ci/gate-dast.log 2>/dev/null || echo "No High/Critical alerts" > $CI_PROJECT_DIR/artifacts/ci/gate-dast.log
+  artifacts:
+    when: always
+    paths:
+      - security-reports/dast-report.html
+      - security-reports/dast-report.json
+      - artifacts/ci/zap-baseline-log.txt
+
+

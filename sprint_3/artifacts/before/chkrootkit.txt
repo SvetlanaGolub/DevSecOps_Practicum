@@ -1,0 +1,29 @@
+WARNING: The following suspicious files and directories were found:
+/usr/lib/ruby/vendor_ruby/rubygems/optparse/.document
+/usr/lib/ruby/vendor_ruby/rubygems/ssl_certs/.document
+/usr/lib/ruby/vendor_ruby/rubygems/tsort/.document
+/usr/lib/ruby/gems/3.1.0/gems/typeprof-0.21.2/vscode/.vscodeignore
+/usr/lib/ruby/gems/3.1.0/gems/typeprof-0.21.2/vscode/.vscode
+/usr/lib/ruby/gems/3.1.0/gems/typeprof-0.21.2/vscode/.gitignore
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/basic/file/.htpasswd
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/basic/file/.htaccess
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/basic/authz_owner/.htpasswd
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/basic/authz_owner/.htaccess
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/noentry/.htaccess
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_time/.htpasswd
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_time/.htaccess
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_anon/.htpasswd
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_anon/.htaccess
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest/.htpasswd
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest/.htaccess
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_wrongrelm/.htpasswd
+/usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_wrongrelm/.htaccess
+
+WARNING: Possible Linux.Xor.DDoS installed:
+/tmp/suspicious.sh
+/tmp/dangerous_file
+/tmp/root_created_file
+
+WARNING: Output from ifpromisc:
+lo: not promisc and no packet sniffer sockets
+eth0: PACKET SNIFFER(/usr/sbin/dhclient[498], /usr/sbin/dhclient[462])

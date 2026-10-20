@@ -1,0 +1,98 @@
+2026-07-01T20:13:36Z	INFO	[vulndb] Need to update DB
+2026-07-01T20:13:36Z	INFO	[vulndb] Downloading vulnerability DB...
+2026-07-01T20:13:36Z	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2026-07-01T20:13:45Z	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2026-07-01T20:13:45Z	INFO	[vuln] Vulnerability scanning is enabled
+2026-07-01T20:13:45Z	INFO	[secret] Secret scanning is enabled
+2026-07-01T20:13:45Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-07-01T20:13:45Z	INFO	[secret] Please see https://trivy.dev/docs/v0.72/guide/scanner/secret#recommendation for faster secret detection
+2026-07-01T20:13:47Z	INFO	[javadb] Downloading Java DB...
+2026-07-01T20:13:47Z	INFO	[javadb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-java-db:1"
+2026-07-01T20:14:19Z	INFO	[javadb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-java-db:1"
+2026-07-01T20:14:19Z	INFO	[javadb] Java DB is cached for 3 days. If you want to update the database more frequently, "trivy clean --java-db" command clears the DB cache.
+2026-07-01T20:14:25Z	INFO	Detected OS	family="alpine" version="3.23.5"
+2026-07-01T20:14:25Z	INFO	[alpine] Detecting vulnerabilities...	os_version="3.23" repository="3.23" pkg_num=75
+2026-07-01T20:14:26Z	INFO	Number of language-specific files	num=1
+2026-07-01T20:14:26Z	INFO	[jar] Detecting vulnerabilities...
+2026-07-01T20:14:26Z	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.72/guide/scanner/vulnerability#severity-selection for details.
+
+Report Summary
+
+┌────────────────────────────────────┬────────┬─────────────────┬─────────┐
+│               Target               │  Type  │ Vulnerabilities │ Secrets │
+├────────────────────────────────────┼────────┼─────────────────┼─────────┤
+│ /tmp/petclinic.tar (alpine 3.23.5) │ alpine │       15        │    -    │
+├────────────────────────────────────┼────────┼─────────────────┼─────────┤
+│ app/petclinic.jar                  │  jar   │        0        │    -    │
+└────────────────────────────────────┴────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+/tmp/petclinic.tar (alpine 3.23.5)
+==================================
+Total: 15 (UNKNOWN: 4, LOW: 0, MEDIUM: 9, HIGH: 2, CRITICAL: 0)
+
+┌───────────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+│    Library    │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                            Title                             │
+├───────────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ libexpat      │ CVE-2026-50219 │ MEDIUM   │ fixed  │ 2.8.1-r0          │ 2.8.2-r0      │ expat: libexpat: Use-after-free vulnerability due to         │
+│               │                │          │        │                   │               │ improper handler call depth tracking                         │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-50219                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56132 │          │        │                   │               │ expat: libexpat: Arbitrary Code Execution via Heap-based     │
+│               │                │          │        │                   │               │ Buffer Overflow                                              │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56132                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56403 │          │        │                   │               │ libexpat: libexpat: Arbitrary code execution due to integer  │
+│               │                │          │        │                   │               │ overflow in storeAtts                                        │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56403                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56404 │          │        │                   │               │ libexpat before 2.8.2 has an integer overflow in addBinding. │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56404                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56405 │          │        │                   │               │ libexpat: libexpat: Information disclosure and arbitrary     │
+│               │                │          │        │                   │               │ code execution via integer overflow                          │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56405                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56406 │          │        │                   │               │ libexpat: libexpat: Arbitrary code execution via integer     │
+│               │                │          │        │                   │               │ overflow in XML_ParseBuffer                                  │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56406                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56410 │          │        │                   │               │ libexpat: libexpat: Integer overflow in xmlwf can lead to    │
+│               │                │          │        │                   │               │ information disclosure and...                                │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56410                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56411 │          │        │                   │               │ expat: libexpat: Integer Overflow Vulnerability Leading to   │
+│               │                │          │        │                   │               │ Information Disclosure or Code Execution...                  │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56411                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56412 │          │        │                   │               │ libexpat: libexpat: Use-after-free vulnerability due to      │
+│               │                │          │        │                   │               │ improper handling of XML CDATA sections...                   │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56412                   │
+│               ├────────────────┼──────────┤        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56131 │ UNKNOWN  │        │                   │               │ libexpat before 2.8.2 lacks handler call depth tracking for  │
+│               │                │          │        │                   │               │ calls to X...                                                │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56131                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56407 │          │        │                   │               │ libexpat before 2.8.2 has an integer overflow in doProlog    │
+│               │                │          │        │                   │               │ that is rela...                                              │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56407                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56408 │          │        │                   │               │ libexpat before 2.8.2 has an integer overflow in copyString. │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56408                   │
+│               ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-56409 │          │        │                   │               │ xmlwf in libexpat before 2.8.2 has an integer overflow for   │
+│               │                │          │        │                   │               │ the output...                                                │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-56409                   │
+├───────────────┼────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ p11-kit       │ CVE-2026-2100  │ HIGH     │        │ 0.25.5-r2         │ 0.26.2-r0     │ p11-kit: NULL dereference via C_DeriveKey with specific NULL │
+│               │                │          │        │                   │               │ parameters                                                   │
+│               │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-2100                    │
+├───────────────┤                │          │        │                   │               │                                                              │
+│ p11-kit-trust │                │          │        │                   │               │                                                              │
+│               │                │          │        │                   │               │                                                              │
+│               │                │          │        │                   │               │                                                              │
+└───────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘
+(Все уязвимости устранены обновлением пакетов)

@@ -1,0 +1,21 @@
+Summary:
+  Total number of entries:      60809
+  Added entries:                0
+  Removed entries:              0
+  Changed entries:              11
+
+---------------------------------------------------
+Changed entries:
+---------------------------------------------------
+
+f =.... mc.. .. . : /home/debian/.vscode-server/data/User/workspaceStorage/121504bfd3f675d88eaf7d22f3902e81/vscode.lock
+f =.... mc.. .. . : /tmp/c2_data.txt
+f =.... mc..... . : /tmp/dangerous_file
+f =.... mc..... . : /tmp/passwd_backup
+f =.... mc.. .. . : /tmp/root_created_file
+f =.... mc..... . : /tmp/suspicious.sh
+f >b... mc..+.. . : /var/log/aide/aideinit.errors
+f >b... mc..H.. . : /var/log/aide/aideinit.log
+f >b... mc.. .. . : /var/log/audit/audit.log
+f >b... mc.. .. . : /var/log/root_service.log
+f >b... mc.. .. . : /var/log/suspicious_scan.log

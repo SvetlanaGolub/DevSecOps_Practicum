@@ -1,0 +1,18 @@
+customRules:
+  petclinic-write.yaml: |-
+    - rule: PetClinic Write Outside Tmp
+      desc: Detect file write attempts outside /tmp in containers
+      condition: >
+        (evt.type in (open,openat,openat2)
+         and evt.is_open_write=true
+         and fd.typechar='f'
+         and fd.num>=0)
+        and not fd.name startswith /tmp
+        and container
+      output: >
+        PetClinic write outside /tmp
+        (file=%fd.name user=%user.name
+         command=%proc.cmdline container=%container.name
+         image=%container.image.repository)
+      priority: WARNING
+      tags: [filesystem, container, petclinic]

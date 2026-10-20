@@ -1,0 +1,62 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: zap-baseline
+  namespace: security-tools
+spec:
+  backoffLimit: 0
+
+  template:
+    metadata:
+      labels:
+        app: zap
+        security-scan: "true"
+
+    spec:
+      restartPolicy: Never
+
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+
+      containers:
+        - name: zap
+          image: ghcr.io/zaproxy/zaproxy:stable
+          imagePullPolicy: IfNotPresent
+
+          command:
+            - zap-baseline.py
+
+          args:
+            - "-t"
+            - "http://petclinic.default.svc.cluster.local:80"
+            - "-r"
+            - "zap-report.html"
+            - "-J"
+            - "zap-report.json"
+            - "-I"
+
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+
+          volumeMounts:
+            - name: zap-work
+              mountPath: /zap/wrk
+            - name: zap-home
+              mountPath: /home/zap
+
+      volumes:
+        - name: zap-work
+          persistentVolumeClaim:
+            claimName: zap-reports
+
+        - name: zap-home
+          emptyDir: {}

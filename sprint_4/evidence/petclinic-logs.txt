@@ -1,0 +1,60 @@
+ # Сборка образа и запуск контейнера через docker-compose из директории приложения
+ $ docker compose up -d
+
+ [+] Running 12/12
+ ✔ mysql Pulled                                                                                                                                         29.0s 
+   ✔ 6b21eb7a1e3e Pull complete                                                                                                                          4.6s 
+   ✔ 80b86c090661 Pull complete                                                                                                                          4.7s 
+   ✔ d7fddb948e8a Pull complete                                                                                                                          4.8s 
+   ✔ 5caad7b89f9f Pull complete                                                                                                                          5.4s 
+   ✔ 8a1152ace190 Pull complete                                                                                                                          5.5s 
+   ✔ 3737f34f1214 Pull complete                                                                                                                          5.5s 
+   ✔ 143f320bd2c8 Pull complete                                                                                                                          8.6s 
+   ✔ 047567c900ab Pull complete                                                                                                                         10.1s 
+   ✔ 33485abd4a2e Pull complete                                                                                                                         24.3s 
+   ✔ 8ae77f7c30a4 Pull complete                                                                                                                         26.1s 
+ ! petclinic Warning        pull access denied for petclinic, repository does not exist or may require 'docker login': denied: req...                    1.3s 
+[+] Building 6.2s (19/19) FINISHED                                                                                                                            
+ => [internal] load local bake definitions                                                                                                               0.0s
+ => => reading from stdin 531B                                                                                                                           0.0s
+ => [internal] load build definition from Dockerfile                                                                                                     0.2s
+ => => transferring dockerfile: 1.09kB                                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/eclipse-temurin:17-jre-alpine                                                                         2.2s
+ => [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-17-alpine                                                                   2.3s
+ => [internal] load .dockerignore                                                                                                                        1.0s
+ => => transferring context: 2B                                                                                                                          0.0s
+ => [build 1/6] FROM docker.io/library/maven:3.9-eclipse-temurin-17-alpine@sha256:22ab50236eec4106ef19d86c0268c0adfac6a2051a3f5d473a315a3ab77c619f       0.0s
+ => [stage-1 1/5] FROM docker.io/library/eclipse-temurin:17-jre-alpine@sha256:02320dd4ce20e243dfb915c686089cf9315c763084fafbb12d5c9993aee18b57           0.0s
+ => [internal] load build context                                                                                                                        1.0s
+ => => transferring context: 10.61kB                                                                                                                     0.1s
+ => CACHED [stage-1 2/5] RUN apk update && apk upgrade --no-cache     && apk del --no-cache         coreutils         gnupg         freetype     && add  0.0s
+ => CACHED [stage-1 3/5] WORKDIR /app                                                                                                                    0.0s
+ => CACHED [build 2/6] WORKDIR /build                                                                                                                    0.0s
+ => CACHED [build 3/6] COPY pom.xml .                                                                                                                    0.0s
+ => CACHED [build 4/6] RUN mvn dependency:go-offline -B                                                                                                  0.0s
+ => CACHED [build 5/6] COPY src ./src                                                                                                                    0.0s
+ => CACHED [build 6/6] RUN mvn clean package -DskipTests                                                                                                 0.0s
+ => CACHED [stage-1 4/5] COPY --from=build /build/target/spring-petclinic-*.jar /app/petclinic.jar                                                       0.0s
+ => CACHED [stage-1 5/5] RUN chown appuser:appuser /app/petclinic.jar                                                                                    0.0s
+ => exporting to image                                                                                                                                   0.1s
+ => => exporting layers                                                                                                                                  0.0s
+ => => writing image sha256:1e3f4c97d18e061cebe59f4146d6d449693d7e8188ee20585c720d20b9f95338                                                             0.0s
+ => => naming to docker.io/library/petclinic:latest                                                                                                      0.0s
+ => resolving provenance for metadata file                                                                                                               0.1s
+[+] Running 6/6
+ ✔ petclinic:latest                        Built                                                                                                         0.0s 
+ ✔ Network spring-petclinic_default        Created                                                                                                       0.2s 
+ ✔ Volume spring-petclinic_mysql-data      Created                                                                                                       0.0s 
+ ✔ Volume spring-petclinic_petclinic-logs  Created                                                                                                       0.0s 
+ ✔ Container mysql                         Healthy                                                                                                      63.2s 
+ ✔ Container petclinic                     Started  
+ 
+# Проверка контейнера и приложения
+$ docker ps | grep petclinic
+68223e8d7573   petclinic:latest   "java -jar petclinic…"   5 minutes ago   Up 4 minutes (unhealthy)   127.0.0.1:8080->8080/tcp              petclinic
+
+$ curl -I http://localhost:8080
+HTTP/1.1 200 
+Content-Type: text/html;charset=UTF-8
+Content-Language: en
+Date: Thu, 02 Jul 2026 15:45:52 GMT

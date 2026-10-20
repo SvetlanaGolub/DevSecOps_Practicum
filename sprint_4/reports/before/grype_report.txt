@@ -1,0 +1,38 @@
+NAME                 INSTALLED   FIXED IN   TYPE  VULNERABILITY   SEVERITY  EPSS          RISK   
+p11-kit              0.25.5-r2   0.26.2-r0  apk   CVE-2026-2100   High      1.1% (62nd)   0.8    
+p11-kit-trust        0.25.5-r2   0.26.2-r0  apk   CVE-2026-2100   High      1.1% (62nd)   0.8    
+coreutils            9.8-r1                 apk   CVE-2016-2781   Medium    0.4% (34th)   0.2    
+coreutils-env        9.8-r1                 apk   CVE-2016-2781   Medium    0.4% (34th)   0.2    
+coreutils-fmt        9.8-r1                 apk   CVE-2016-2781   Medium    0.4% (34th)   0.2    
+coreutils-sha512sum  9.8-r1                 apk   CVE-2016-2781   Medium    0.4% (34th)   0.2    
+busybox              1.37.0-r30             apk   CVE-2025-60876  Medium    0.3% (17th)   0.1    
+busybox-binsh        1.37.0-r30             apk   CVE-2025-60876  Medium    0.3% (17th)   0.1    
+ssl_client           1.37.0-r30             apk   CVE-2025-60876  Medium    0.3% (17th)   0.1    
+sqlite-libs          3.51.2-r0              apk   CVE-2026-11822  High      0.2% (7th)    0.1    
+sqlite-libs          3.51.2-r0              apk   CVE-2026-11824  High      0.2% (7th)    0.1    
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-50219  Medium    0.2% (12th)   0.1    
+gnupg                2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gnupg-dirmngr        2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gnupg-gpgconf        2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gnupg-keyboxd        2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gnupg-utils          2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gnupg-wks-client     2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gpg                  2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gpg-agent            2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gpg-wks-server       2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gpgsm                2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+gpgv                 2.4.9-r0               apk   CVE-2022-3219   Low       0.3% (20th)   < 0.1  
+freetype             2.14.1-r0              apk   CVE-2026-23865  Medium    0.1% (3rd)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56410  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56411  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56403  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56404  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56405  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56408  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56406  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56407  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56412  Medium    0.1% (1st)    < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56409  Medium    < 0.1% (0th)  < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56132  Medium    < 0.1% (0th)  < 0.1  
+libexpat             2.8.1-r0    2.8.2-r0   apk   CVE-2026-56131  Medium    0.1% (1st)    < 0.1
+(Большая часть пакетов обновлена)

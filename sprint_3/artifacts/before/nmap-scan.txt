@@ -1,0 +1,26 @@
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000061s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 996 closed tcp ports (conn-refused)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 9.2p1 Debian 2+deb12u10 (protocol 2.0)
+| ssh-hostkey: 
+|   256 e0fe38b1e8214a1ede02bbd0e5c439c8 (ECDSA)
+|_  256 d6ef550c2b0f3a5df4e38161797fac9c (ED25519)
+25/tcp   open  smtp    Exim smtpd 4.96
+| smtp-commands: fv419j3vupl0apbktqqf.auto.internal Hello localhost [127.0.0.1], SIZE 52428800, 8BITMIME, PIPELINING, PIPECONNECT, CHUNKING, STARTTLS, PRDR, HELP
+|_ Commands supported: AUTH STARTTLS HELO EHLO MAIL RCPT DATA BDAT NOOP QUIT RSET HELP
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=fv419j3vupl0apbktqqf.auto.internal/organizationName=Exim Developers/countryName=UK
+| Not valid before: 2026-06-25T16:12:28
+|_Not valid after:  2026-06-25T18:12:28
+8080/tcp open  http    SimpleHTTPServer 0.6 (Python 3.11.2)
+|_http-server-header: SimpleHTTP/0.6 Python/3.11.2
+|_http-title: Directory listing for /
+8081/tcp open  http    SimpleHTTPServer 0.6 (Python 3.11.2)
+|_http-server-header: SimpleHTTP/0.6 Python/3.11.2
+|_http-title: Directory listing for /
+Service Info: Host: fv419j3vupl0apbktqqf.auto.internal; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 9.89 seconds

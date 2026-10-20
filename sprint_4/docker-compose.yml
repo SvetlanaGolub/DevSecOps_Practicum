@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  petclinic:  
+    build:
+        context: . 
+        dockerfile: Dockerfile       
+    image: petclinic:latest 
+    container_name: petclinic 
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=mysql
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/petclinic
+      - SPRING_DATASOURCE_USERNAME=petclinic
+      - SPRING_DATASOURCE_PASSWORD=petclinic
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.MySQLDialect
+      - JAVA_OPTS=-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0
+    volumes:
+      - petclinic-logs:/app/logs
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    read_only: true
+    mem_limit: "512m"
+    cpu_shares: 512
+    pids_limit: 100 
+    tmpfs:                   
+      - /tmp
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5 
+      start_period: 40s 
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:9.7
+    container_name: mysql
+    restart: unless-stopped
+    user: mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_USER=petclinic
+      - MYSQL_PASSWORD=petclinic
+      - MYSQL_DATABASE=petclinic
+    volumes:
+      - "./conf.d:/etc/mysql/conf.d:ro"
+      - mysql-data:/var/lib/mysql
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: "512m"
+    cpu_shares: 512
+    pids_limit: 100
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  petclinic-logs:
+    driver: local
+  mysql-data:
+    driver: local

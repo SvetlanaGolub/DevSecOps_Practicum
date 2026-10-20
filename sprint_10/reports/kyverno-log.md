@@ -1,0 +1,7 @@
+```bash
+kubectl logs -n kyverno kyverno-admission-controller-575fb759c8-nqjgq --since=5m | grep -i -E "bad-pod|require-pet-security-context|denied|blocked"   
+   
+2026-09-09T11:09:31Z TRC github.com/kyverno/kyverno/pkg/webhooks/resource/validation/validation.go:116 > validation failed URLParams= action=Enforce clusterroles=["cluster-admin","system:basic-user","system:discovery","system:public-info-viewer"] failed rules=["require-security-context"] gvk="/v1, Kind=Pod" gvr="/v1, Resource=pods" kind=Pod logger=webhooks/resource/validate name=bad-pod namespace=default operation=CREATE policy=require-pet-security-context resource=default/Pod/bad-pod resource.gvk="/v1, Kind=Pod" roles=[] uid=def89e71-717e-4543-87e1-25a2c47262a1 user={"groups":["kubeadm:cluster-admins","system:authenticated"],"username":"kubernetes-admin"} v=2  
+
+2026-09-09T11:09:31Z TRC github.com/kyverno/kyverno/pkg/webhooks/utils/block.go:30 > blocking admission request URLParams= action=validate clusterroles=["cluster-admin","system:basic-user","system:discovery","system:public-info-viewer"] gvk="/v1, Kind=Pod" gvr="/v1, Resource=pods" kind=Pod logger=webhooks/resource/validate name=bad-pod namespace=default operation=CREATE policy=require-pet-security-context resource=default/Pod/bad-pod resource.gvk="/v1, Kind=Pod" roles=[] uid=def89e71-717e-4543-87e1-25a2c47262a1 user={"groups":["kubeadm:cluster-admins","system:authenticated"],"username":"kubernetes-admin"} v=2
+```

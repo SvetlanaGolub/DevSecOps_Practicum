@@ -1,0 +1,208 @@
+stages:
+  - tests
+  - build
+
+variables:
+  # Docker
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  IMAGE_NAME: "$HARBOR_REGISTRY/$HARBOR_PROJECT/spring-petclinic:$CI_COMMIT_SHORT_SHA"
+
+  # Trivy
+  TRIVY_NO_PROGRESS: "true"
+  TRIVY_CACHE_DIR: ".trivycache"
+
+  # SonarQube
+  SONAR_HOST_URL: "$SONAR_URL"
+
+  # GitLab checkout
+  GIT_DEPTH: "0"
+
+####################tests###########################
+
+gitleaks:
+  stage: tests
+  image:
+    name: zricethezav/gitleaks:v8.28.0
+    entrypoint: [""]
+  tags:
+    - yandex
+    - docker
+  script:
+    - mkdir -p security-reports
+    - |
+      gitleaks detect \
+        --source . \
+        --no-banner \
+        --report-format json \
+        --report-path security-reports/gitleaks-report.json 
+  artifacts:
+    when: always
+    paths:
+      - security-reports/gitleaks-report.json
+    expire_in: 1 week
+
+hadolint:
+  stage: tests
+  image:
+    name: hadolint/hadolint:v2.15.1-alpine
+    entrypoint: [""]
+  tags:
+    - yandex
+    - docker
+  script:
+    - mkdir -p security-reports
+    - |
+      if [ ! -f Dockerfile ]; then
+        echo "ERROR: Dockerfile не найден в корне репозитория"
+        exit 1
+      fi
+
+      hadolint Dockerfile \
+        --format json \
+        > security-reports/hadolint-report.json\
+        || true
+
+  artifacts:
+    when: always
+    paths:
+      - security-reports/hadolint-report.json
+    expire_in: 1 week
+
+trivy:
+  stage: tests
+  image:
+    name: aquasec/trivy:0.74.0
+    entrypoint: [""]
+  tags:
+    - yandex
+    - docker
+  script:
+    # Устанавливаем Java 17 для работы сборщика
+    - apk add --no-cache openjdk17
+
+    # Генерируем SBOM силами самого Gradle, вызывая задачу cyclonedxBom
+    - chmod +x gradlew
+    - ./gradlew cyclonedxBom --no-daemon
+
+    - mkdir -p security-reports
+
+    # Находим сгенерированный JSON-файл (он называется bom.json или cyclonedx.json)
+    - echo "Поиск сгенерированного JSON SBOM..."
+    - |
+      FOUND_BOM=$(find build/reports/ -name "*.json" | head -n 1)
+      if [ -z "$FOUND_BOM" ]; then
+        echo "Предупреждение: JSON не найден, проверяем всю папку build/"
+        FOUND_BOM=$(find build/ -name "bom.json" -o -name "*.json" | head -n 1)
+      fi
+      
+      if [ -z "$FOUND_BOM" ]; then
+        echo "ERROR: Спецификация зависимостей JSON не найдена!"
+        ls -R build/ || true
+        exit 1
+      fi
+      echo "Файл найден по пути: $FOUND_BOM"
+      cp "$FOUND_BOM" clean-bom.json
+
+    # Сканируем  автономный clean-bom.json
+    - |    
+      trivy sbom \
+        --cache-dir .trivycache/ \
+        --format json \
+        --output security-reports/trivy-report.json \
+        clean-bom.json
+
+    - |
+      trivy sbom \
+        --cache-dir .trivycache/ \
+        --format cyclonedx \
+        --output security-reports/sbom.cdx.json \
+        clean-bom.json
+
+    - |
+      echo "Проверка HIGH/CRITICAL уязвимостей в структуре JSON SBOM..."
+      
+      trivy sbom \
+        --cache-dir .trivycache/ \
+        --severity HIGH,CRITICAL \
+        --exit-code 1 \
+        clean-bom.json
+
+  cache:
+    key: trivy-db-cache
+    paths:
+      - .trivycache/
+
+  artifacts:
+    when: always
+    paths:
+      - security-reports/trivy-report.json
+      - security-reports/sbom.cdx.json
+    expire_in: 1 week
+
+sonarqube:
+  stage: tests
+  image: eclipse-temurin:17-jdk
+  tags:
+    - yandex
+    - docker
+
+  script:
+    - chmod +x gradlew
+    - ./gradlew clean test jacocoTestReport
+    - |
+      ./gradlew sonar \
+        -Dsonar.host.url="$SONAR_URL" \
+        -Dsonar.token="$SONAR_TOKEN" \
+        -Dsonar.projectKey="$SONAR_PROJECT_KEY" \
+        -Dsonar.projectName="$SONAR_PROJECT_NAME" \
+        -Dsonar.java.binaries=build/classes/java/main \
+        -Dsonar.qualitygate.wait=true \
+        || true
+
+##############build################
+
+build:
+  stage: build
+  image: docker:27.5.1-cli
+  services:
+    - name: docker:27.5.1-dind
+      command:
+        - "--tls=false"
+
+  tags:
+    - yandex
+    - docker
+
+  needs:
+    - gitleaks
+    - hadolint
+    - trivy
+    - sonarqube
+
+  script:
+    # Сборка
+    - docker build -t "$IMAGE_NAME" .
+    - echo "$IMAGE_NAME" > image.txt
+
+    # Проверка Docker-образа с помощью Dockle
+    - mkdir -p security-reports
+    - |
+      docker run --rm \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        goodwithtech/dockle:v0.4.15 \
+        --format json \
+        "$IMAGE_NAME" \
+        > security-reports/dockle-report.json \
+        || true
+
+    # Публикация в Harbor
+    - echo "$HARBOR_PASSWORD" | docker login "$HARBOR_REGISTRY" -u "$HARBOR_USERNAME" --password-stdin
+    - docker push "$IMAGE_NAME"
+
+  artifacts:
+    when: always
+    paths:
+      - image.txt
+      - security-reports/dockle-report.json
+    expire_in: 1 week

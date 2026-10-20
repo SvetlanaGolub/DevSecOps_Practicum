@@ -1,0 +1,22 @@
+@startuml
+skinparam dpi 160
+start
+:Developer pushes -> MR;
+:MR pipeline (SCA gate);
+if (SCA Crit>0) then (yes)
+  :BLOCK build;
+  stop
+else (no)
+  :SBOM + Sign artifact;
+  :Publish (short-lived job token, write_registry);
+endif
+:DAST on test env;
+if (DAST Crit>0) then (yes)
+  :BLOCK test;
+  stop
+else (no)
+  :Manual approval for prod;
+  :Deploy by service account (Least Privilege, SoD);
+endif
+stop
+@enduml
